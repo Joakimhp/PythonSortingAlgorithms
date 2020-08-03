@@ -1,5 +1,4 @@
-from sorting_algorithm import SortingAlgorithm
-
+from sorting_superclass import SortingAlgorithm
 
 class MergeSort(SortingAlgorithm):
     def sort(self, arr):
