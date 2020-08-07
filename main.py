@@ -7,15 +7,21 @@ def print_array(arraytype, array):
     --------------------*******--------------------
     """)
 
+
 unsorted_array = []
 for i in range(10):
     unsorted_array.append(rnd.randint(0, 250))
-print_array('mergesort', unsorted_array)
+print("unsorted array: " + str(unsorted_array))
+print("______________________________________\n")
 
 mergesort = sa.MergeSort
-sorted_array = mergesort.sort(unsorted_array)
-print("Array sorted by mergesort: " + str(sorted_array))
+sorted_array = sa.MergeSort.sort(unsorted_array)
+print_array('mergesort', sorted_array)
 
 quicksort = sa.QuickSort
 sorted_array = quicksort.sort(unsorted_array, 0, len(unsorted_array)-1)
 print_array('quicksort', sorted_array)
+
+insertionsort = sa.InsertionSort
+sorted_array = insertionsort.sort(unsorted_array, len(unsorted_array)-1)
+print_array('insertionsort', sorted_array)
