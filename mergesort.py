@@ -1,5 +1,6 @@
 from sorting_superclass import SortingAlgorithm
 
+
 class MergeSort(SortingAlgorithm):
     def sort(self, arr):
         if len(arr) > 1:

@@ -1,21 +1,29 @@
 from sorting_superclass import SortingAlgorithm
-
+from copy import deepcopy
 
 class QuickSort(SortingAlgorithm):
-    #Using Lommuto partition scheme
-    def sort(self, arr, indexLow, indexHigh):
-        if indexLow < indexHigh:
-            p = self.partition(arr, indexLow, indexHigh)
-            self.sort(arr, indexLow, p-1)
-            self.sort(arr, p+1, indexHigh)
-        return arr
+    local_array = []
 
-    def partition(self, arr, indexLow, indexHigh):
-        pivot = arr[indexHigh]
-        i = indexLow
-        for j in range(indexLow, indexHigh):
-            if arr[j] < pivot:
-                arr[i], arr[j] = arr[j], arr[i]
+    def set_array(self, arr):
+        self.local_array = deepcopy(arr)
+
+    #Using Lommuto partition scheme
+    def sort(self, arr, index_low, index_high):
+        self.set_array(arr)
+        #print("1us" + str(arr) + " - sa" + str(self.local_array))
+        if index_low < index_high:
+            #print("2us" + str(arr) + " - sa" + str(self.local_array))
+            p = self.partition(index_low, index_high)
+            self.sort(self.local_array, index_low, p - 1)
+            self.sort(self.local_array, p + 1, index_high)
+        return self.local_array
+
+    def partition(self, index_low, index_high):
+        pivot = self.local_array[index_high]
+        i = index_low
+        for j in range(index_low, index_high):
+            if self.local_array[j] < pivot:
+                self.local_array[i], self.local_array[j] = self.local_array[j], self.local_array[i]
                 i = i+1
-        arr[i], arr[indexHigh] = arr[indexHigh], arr[i]
+        self.local_array[i], self.local_array[index_high] = self.local_array[index_high], self.local_array[i]
         return i
